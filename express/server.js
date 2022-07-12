@@ -25,8 +25,9 @@ async function getClassProperties(chainID, contractAddress, tokenID) {
 }
 
 router.get('/:chainID/:contractAddress/:tokenID', async (req, res) => {
-    let apr = await getClassProperties(req.params.chainID, req.params.contractAddress, req.params.tokenID)
-    res.send(apr)
+    let json = await getClassProperties(req.params.chainID, req.params.contractAddress, req.params.tokenID)
+    res.setHeader('Content-Type', 'application/json');
+    res.send(json)
 });
 
 app.use(
